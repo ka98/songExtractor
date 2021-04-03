@@ -35,7 +35,7 @@ class MyHTMLParser(HTMLParser):
             #and not data.isspace() and "[Index]" not in data:
                 #print(data.strip())
 
-            if 'songnumberlink pcalibre pcalibre1 pcalibre2' in prevAttr and "[Index]" not in data and not data.isspace() and 'song' in globals():
+            if 'songnumberlink pcalibre pcalibre2 pcalibre1' in prevAttr and "[Index]" not in data and not data.isspace() and 'song' in globals():
                 song["songNumber"] = data.strip()
 
             if 'songinfo' in prevAttr and not data.isspace() and 'song' in globals():
@@ -86,11 +86,11 @@ if __name__ == '__main__':
             "songInfo": "",
             "verses": []
         }
-        parser.feed(open("WDH/songs_split_" + str(i).zfill(3) + ".html", encoding='utf-8').read())
+        parser.feed(open("input/songs_split_" + str(i).zfill(3) + ".html", encoding='utf-8').read())
         songs.append(song)
         i += 1
     data = json.dumps(songs, indent=2)
-    f = open("output.txt", "a")
+    f = open("output.json", "a")
     f.write(data)
     f.close()
     print('done')
